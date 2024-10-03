@@ -15,10 +15,10 @@ public class Converter {
             System.out.println("You chose 'Binary' system. Enter any number between '2' and '16' you want to convert");
             int base = inputAB.nextInt();
             if (base >= 2 && base <= 16){
-                System.out.println("Your Binary number is: " + Integer.toBinaryString(base));
+                System.out.println("Your Binary number is: " + DecimalToBinary(base));
             }
             else {
-                System.out.println("You entered wrong number! Enter between '2' and '16' to convert ");
+                System.out.println(Error(base));
             }
         }
         if (sign == 2) {
@@ -28,27 +28,32 @@ public class Converter {
                 System.out.println("Your Octal number is: " + DecimalToOctal(base));
             }
             else {
-                System.out.println("You entered wrong number! Enter between '2' and '16' to convert ");
+                System.out.println(Error(base));
             }
         }
         if (sign == 3) {
             System.out.println("You chose 'Hexadecimal' system. Enter any number between '2' and '16' you want to convert");
             int base = inputAB.nextInt();
             if (base >= 2 && base <= 16) {
-                String HexaD;
-                HexaD = Integer.toHexString(base);
-                System.out.println("Your Hexadecimal number is: " + HexaD);
+                System.out.println("Your Hexadecimal number is: " + DecimalToHexa(base));
 
             } else {
-                System.out.println("You entered wrong number! Enter between '2' and '16' to convert ");
+                System.out.println(Error(base));
             }
         }
         else if (sign < 1 || sign > 3 ){
-            System.out.println("You entered wrong number! Choose from 1-3 ");
+            System.out.println(Error(sign));
         }
 
         }
-    private static int DecimalToOctal(int DecimalNumber) {
+
+
+    public static String DecimalToBinary(int DecimalNumber){
+        String number = Integer.toBinaryString(DecimalNumber);
+        return number;
+    }
+
+    public static int DecimalToOctal(int DecimalNumber) {
         int OctalNumber = 0, i = 1;
         while (DecimalNumber != 0){
             int remainder = DecimalNumber % 8;
@@ -57,5 +62,15 @@ public class Converter {
             DecimalNumber = DecimalNumber / 8;
         }
         return OctalNumber;
+    }
+
+    public static String DecimalToHexa(int DecimalNumber){
+        String number = Integer.toHexString(DecimalNumber);
+        return number;
+    }
+
+    public static int Error(int DecimalNumber){
+        System.out.println("You entered wrong number!");
+        return DecimalNumber;
     }
 }
